@@ -3,6 +3,10 @@
 A minimal **Model Context Protocol** (MCP) server that connects ChatGPT to **WHOOP v2 API** (read‑only).
 It exposes tools to fetch **recovery, sleep, workouts, cycles, and a daily summary**.
 
+Visit the root URL of the server to open a polished landing page (Dutch copy) with
+installation guidance, OAuth authorisation steps, and an overview of the available tools.
+From there you can trigger the OAuth flow via the "Start OAuth" button.
+
 ## Quick start (Render/Vercel/any Node host)
 1. Create a WHOOP Developer app and note the **Client ID** and **Client Secret**.
 2. Set the **Redirect URI** in WHOOP to `https://<your-host>/oauth/callback`.

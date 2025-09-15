@@ -1,0 +1,7 @@
+node_modules/
+.env
+.tokens
+*.log
+.DS_Store
+tokens.json
+public/*.map
