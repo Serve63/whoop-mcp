@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WHOOP MCP Connector</title>
+  <meta name="description" content="Een elegante landingspagina voor de WHOOP Model Context Protocol server.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-content">
+      <a class="brand" href="#top">WHOOP MCP</a>
+      <nav class="nav-links" aria-label="Primaire navigatie">
+        <a href="#hoe-het-werkt">Hoe het werkt</a>
+        <a href="#tools">Tools</a>
+        <a href="#installatie">Installatie</a>
+      </nav>
+      <a class="button primary" href="/oauth/login">Start OAuth</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">ChatGPT Connector</p>
+          <h1>Verbind je WHOOP data rechtstreeks met ChatGPT.</h1>
+          <p class="hero-subtitle">De WHOOP MCP server maakt het eenvoudig om herstel-, slaap- en workoutgegevens veilig te verkennen tijdens een gesprek met ChatGPT.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="/oauth/login">OAuth starten</a>
+            <a class="button ghost" href="#installatie">Documentatie</a>
+          </div>
+          <div class="status-card" role="status">
+            <div class="status-indicator" aria-hidden="true"></div>
+            <div>
+              <p class="status-label">Server status</p>
+              <p class="status-value" id="status-value">Controleren…</p>
+            </div>
+          </div>
+        </div>
+        <div class="hero-preview" aria-hidden="true">
+          <div class="preview-card">
+            <div class="preview-header">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <div class="preview-body">
+              <h2>Vandaag samengevat</h2>
+              <ul class="preview-list">
+                <li>
+                  <span>Recovery score</span>
+                  <strong>82%</strong>
+                </li>
+                <li>
+                  <span>Rusthartslag</span>
+                  <strong>46 bpm</strong>
+                </li>
+                <li>
+                  <span>Slaapduur</span>
+                  <strong>7,3 uur</strong>
+                </li>
+              </ul>
+              <p class="preview-footnote">Informatie afkomstig van <code>whoop_today_summary</code>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="hoe-het-werkt" class="section">
+      <div class="container">
+        <h2>Hoe het werkt</h2>
+        <p class="section-lead">De connector bundelt de WHOOP API in gebruiksklare tools voor het Model Context Protocol.</p>
+        <div class="steps">
+          <article class="step-card">
+            <div class="step-number">1</div>
+            <h3>OAuth machtigen</h3>
+            <p>Meld je aan met je WHOOP account via de <em>Start OAuth</em> knop. De tokens worden veilig lokaal opgeslagen.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-number">2</div>
+            <h3>Connector toevoegen</h3>
+            <p>Ga in ChatGPT naar <strong>Instellingen → Connectors</strong> en voeg de URL van deze server toe als MCP endpoint.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-number">3</div>
+            <h3>Data ophalen</h3>
+            <p>Gebruik de tools hieronder om recente recovery-, slaap- en workoutgegevens in je gesprek te laden.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="tools" class="section section-alt">
+      <div class="container">
+        <h2>Beschikbare tools</h2>
+        <div class="tool-grid">
+          <article class="tool-card">
+            <h3>whoop_today_summary</h3>
+            <p>Krijg in één oproep een overzicht van je herstel en de laatste slaapscore.</p>
+          </article>
+          <article class="tool-card">
+            <h3>whoop_recovery_range</h3>
+            <p>Vraag herstelmetingen op tussen een begin- en einddatum in ISO-formaat.</p>
+          </article>
+          <article class="tool-card">
+            <h3>whoop_sleep_range</h3>
+            <p>Ontvang slaapactiviteiten, inclusief duur en slaapfasen, over de gevraagde periode.</p>
+          </article>
+          <article class="tool-card">
+            <h3>whoop_workouts_range</h3>
+            <p>Bekijk workouts met intensiteit, duur en strain binnen een opgegeven tijdvenster.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="installatie" class="section">
+      <div class="container install-grid">
+        <div>
+          <h2>Installatie &amp; configuratie</h2>
+          <p class="section-lead">Gebruik deze gids om de server op een platform zoals Vercel, Render of je eigen Node host te deployen.</p>
+          <ol class="install-steps">
+            <li>Maak een WHOOP Developer applicatie aan en noteer de Client ID &amp; Secret.</li>
+            <li>Stel de redirect URI in naar <code>https://&lt;jouw-host&gt;/oauth/callback</code>.</li>
+            <li>Deploy dit project en vul de omgevingsvariabelen in.</li>
+            <li>Open <code>/oauth/login</code> om tokens op te slaan en verbind daarna via ChatGPT.</li>
+          </ol>
+        </div>
+        <div class="code-card" aria-live="polite">
+          <div class="code-card-header">
+            <h3>.env voorbeeld</h3>
+            <button class="button ghost small" type="button" data-copy-target="#env-snippet">Kopieer</button>
+          </div>
+          <pre id="env-snippet"><code>WHOOP_CLIENT_ID=&lt;client-id&gt;
+WHOOP_CLIENT_SECRET=&lt;client-secret&gt;
+WHOOP_REDIRECT_URI=https://&lt;jouw-host&gt;/oauth/callback
+WHOOP_SCOPES=read:recovery read:sleep read:workout read:cycles read:profile
+TOKEN_STORE_FILE=./tokens.json
+PORT=3000</code></pre>
+          <p class="code-footnote">Pas de waarden aan voor jouw omgeving. Voor meerdere gebruikers is een externe geheime opslag aan te raden.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>&copy; <span id="year"></span> WHOOP MCP demo. Gebouwd met ❤️ en Express.</p>
+      <a href="https://modelcontextprotocol.io" target="_blank" rel="noreferrer">Meer over MCP</a>
+    </div>
+  </footer>
+
+  <script src="/script.js" type="module"></script>
+</body>
+</html>
